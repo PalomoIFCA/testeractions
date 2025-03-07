@@ -164,7 +164,7 @@ Uncorrect workflows
 -------------------
 The folder includes some workflows with errors named *uncorrect1.json* and *uncorrect2.json* useful for tests.
 
-Further information about workflow submission can be found at `Ophidia documentation`_.
+Further information about workflow submission can be found in the `Ophidia documentation`_.
 
 .. _PyOphidia documentation: https://pyophidia.readthedocs.io/en/stable/
 .. _Ophidia documentation: https://ophidia.cmcc.it/documentation/users/workflow/workflow_basic.html#workflow-submission
