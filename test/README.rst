@@ -9,7 +9,7 @@ This folder contains a number of workflows that can be used to test Ophidia serv
 
 Cold Spells
 -----------
-File: coldspells.py
+File: coldspells.json
 
 Description: this workflow performs the computation of Cold Spells indexes.
 
@@ -25,11 +25,11 @@ Test example:
 	from pyophidia import Experiment
 	Experiment.validate("coldspells.json")
 
-Anomaly of Diurnal Temperature Range
+Anomaly of diurnal temperature range
 ------------------------------------
-File: dtr.py
+File: dtr.json
 
-Description: this workflow computes the anomaly of DTR (Diurnal Temperature Range) index with respect to past values; it works on two input files (tasmin/tasmax variable).
+Description: this workflow computes the anomaly of diurnal temperature range (DTR) index with respect to past values; it works on two input files (tasmin/tasmax variable).
 
 Arguments:
 
@@ -56,7 +56,7 @@ Test example:
 
 Lenght of snow season
 ---------------------
-File: lss.py
+File: lss.json
 
 Description: this workflow evaluates the lenght of snow season.
 
@@ -117,7 +117,7 @@ Test example:
 
 Sea surface temperature
 -----------------------
-File: sst.py
+File: sst.json
 
 Description: this workflow evaluates monthly averages of sea surface temperature (SST).
 
@@ -139,7 +139,7 @@ Test example:
 
 Snow water equivalent
 ---------------------
-File: swe.py
+File: swe.json
 
 Description: this workflow evaluates monthly averages of snow water equivalent (SWE).
 
@@ -162,7 +162,7 @@ Test example:
 
 Uncorrect workflows
 -------------------
-The folder includes some workflows with errors named uncorrect1.py and uncorrect2.py useful for tests.
+The folder includes some workflows with errors named *uncorrect1.json* and *uncorrect2.json* useful for tests.
 
 Further information about workflow submission can be found at `Ophidia documentation`_.
 
