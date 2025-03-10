@@ -11,7 +11,7 @@ jobs:
           ls ${{ github.workspace }}
       - run: echo ls ${{ github.workspace }}
       - run: echo ${{ github.workspace }}
-      - run: python holamundo.py
+        #- run: python holamundo.py
       - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
       - name: Check out repository code
         uses: actions/checkout@v4
