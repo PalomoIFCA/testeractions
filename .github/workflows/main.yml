@@ -12,6 +12,13 @@ jobs:
       - run: echo ls ${{ github.workspace }}
       - run: echo ${{ github.workspace }}
         #- run: python holamundo.py
+      
+      - run: echo "🖥️ ssstart of list on the runner."
+      - name: List files in the repository
+        run: |
+          ls ${{ github.workspace }}
+      - run: echo "🍏 end of list."
+
       - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
       - name: Check out repository code
         uses: actions/checkout@v4
