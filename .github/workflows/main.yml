@@ -11,7 +11,7 @@ jobs:
           ls ${{ github.workspace }}
       - run: echo ls ${{ github.workspace }}
       - run: echo ${{ github.workspace }}
-        #- run: python holamundo.py
+      - run: python helloworld.py
       
       - run: echo "🖥️ ssstart of list on the runner."
       - name: List files in the repository
