@@ -55,6 +55,7 @@ payload={
 args= get_input_args()
 
 payload['repo_code']['repo'] =args.repo
+print(payload)
 #create the pipeline
 #crea=requests.post('https://api-staging.sqaaas.eosc-synergy.eu/v1/pipeline/assessment?run_criteria_workflow_only=True',json=payload)
 crea=requests.post('https://api-staging.sqaaas.eosc-synergy.eu/v1/pipeline/assessment?run_criteria_workflow_only=True',json=payload)
