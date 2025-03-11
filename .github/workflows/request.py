@@ -21,7 +21,8 @@ payload={
     "repo_code": {
         "repo": "https://github.com/OphidiaBigData/ophidia-workflow-catalogue",
         "branch": "master"
-    },
+    },}
+    '''
     "criteria_workflow": [
         {
             "id": "QC.Sty",
@@ -51,7 +52,7 @@ payload={
         }
     ]
 }
-
+'''
 args= get_input_args()
 
 payload['repo_code']['repo'] ='https://github.com/'+args.repo
