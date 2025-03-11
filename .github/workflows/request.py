@@ -6,13 +6,21 @@ import json
 print('1st')
 import sys
 import time
+import argparse
 print('all')
 
-
+def get_input_args():
+    parser = argparse.ArgumentParser(description=("Find Ophidia workflows"))
+    parser.add_argument(
+        "--repo", metavar="REPO", type=str, help="name of the local repo", default='.'
+    )
+    
+    return parser.parse_args()
+    
 payload={
     "repo_code": {
         "repo": "https://github.com/OphidiaBigData/ophidia-workflow-catalogue",
-        "branch": "devel"
+        "branch": "master"
     },
     "criteria_workflow": [
         {
@@ -26,7 +34,7 @@ payload={
                     "args": [
                         {
                             "type": "optional", "description": "Path to the folder where the workflows are located", "value": ".", "option": "--path", "selectable": True, "explicit_paths": True
-                        },{"type": "optional", "description": "Path to the folder where the workflows are located", "value": "[pata]", "option": "--paath", "selectable": True, "explicit_paths": True},
+                        },{"type": "optional", "description": "args for validation", "value": "[arg]", "option": "--paath", "selectable": True, "explicit_paths": True},
                         
                     ],
                     "reporting": {
@@ -44,7 +52,9 @@ payload={
     ]
 }
 
+args= get_input_args()
 
+payload['repo_code']['repo'] 
 #create the pipeline
 #crea=requests.post('https://api-staging.sqaaas.eosc-synergy.eu/v1/pipeline/assessment?run_criteria_workflow_only=True',json=payload)
 crea=requests.post('https://api-staging.sqaaas.eosc-synergy.eu/v1/pipeline/assessment?run_criteria_workflow_only=True',json=payload)
