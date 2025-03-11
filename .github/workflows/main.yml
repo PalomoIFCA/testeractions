@@ -28,5 +28,5 @@ jobs:
         run: |
           ls ${{ github.workspace }}
       - run: python helloworld.py
-      - run: python .github/workflows
+      - run: python .github/workflows/request.py
       - run: echo "🍏 This job's status is ${{ job.status }}."
