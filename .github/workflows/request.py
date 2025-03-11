@@ -22,7 +22,7 @@ payload={
         "repo": "https://github.com/OphidiaBigData/ophidia-workflow-catalogue",
         "branch": "master"
     },}
-    '''
+'''
     "criteria_workflow": [
         {
             "id": "QC.Sty",
