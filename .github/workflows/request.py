@@ -1,10 +1,12 @@
 #comunication with sqaas.py
 
-
+print('preimports')
 import requests
 import json
+print('1st')
 import sys
 import time
+peint('all')
 
 
 payload={
