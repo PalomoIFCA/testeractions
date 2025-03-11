@@ -78,7 +78,7 @@ for i in range(100):
     print(i)  
     status=requests.get('https://api-staging.sqaaas.eosc-synergy.eu/v1/pipeline/'+ide+'/status')
 
-    #print (status,status.json())
+    print (status,status.json())
     if status.json()['build_status']=='SUCCESS':
         output=requests.get('https://api-staging.sqaaas.eosc-synergy.eu/v1/pipeline/'+ide+'/output')
         break
