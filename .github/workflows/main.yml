@@ -18,7 +18,10 @@ jobs:
       #  run: |
       #    ls ${{ github.workspace }}
       #- run: echo "🍏 end of list."
-        #- run: python helloworld.py
+      - run: |
+          export INPUT_STORE=$(python helloworld.py)
+          echo 'the test:'
+          echo $INPUT_STORE
       - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
       - name: Check out repository code
         uses: actions/checkout@v4
