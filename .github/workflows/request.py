@@ -6,7 +6,7 @@ import json
 print('1st')
 import sys
 import time
-peint('all')
+print('all')
 
 
 payload={
