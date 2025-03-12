@@ -56,11 +56,11 @@ payload={
 args= get_input_args()
 
 payload['repo_code']['repo'] ='https://github.com/'+args.repo
-print(payload)
+#print(payload)
 #create the pipeline
 #crea=requests.post('https://api-staging.sqaaas.eosc-synergy.eu/v1/pipeline/assessment?run_criteria_workflow_only=True',json=payload)
 crea=requests.post('https://api-staging.sqaaas.eosc-synergy.eu/v1/pipeline/assessment?run_criteria_workflow_only=True',json=payload)
-print (crea,crea.json())
+#print (crea,crea.json())
 #look at the json
 ide=crea.json()['id']
 '''
@@ -72,16 +72,16 @@ with open('creation_'+ide+'.json','w') as creation_file:
 
 run=requests.post('https://api-staging.sqaaas.eosc-synergy.eu/v1/pipeline/'+ide+'/run')
 #check if it generates next job, check the jsons with the identifier
-print (run,run.text)
+#print (run,run.text)
 #time.sleep(10)
 #get the output
 for i in range(100):
     time.sleep(5)
-    print(i)  
+    #print(i)  
     status=requests.get('https://api-staging.sqaaas.eosc-synergy.eu/v1/pipeline/'+ide+'/status')
 
-    print (status,status.json())
+    #print (status,status.json())
     if status.json()['build_status']=='SUCCESS':
         output=requests.get('https://api-staging.sqaaas.eosc-synergy.eu/v1/pipeline/'+ide+'/output')
         break
-
+print(str(output.json))
