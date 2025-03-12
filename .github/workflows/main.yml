@@ -24,9 +24,9 @@ jobs:
         uses: actions/checkout@v4
       - name: store output test
         run: |
-          export INPUT_STORE=$(python helloworld.py)
+          export INPUT_STORING=$(python helloworld.py)
           echo 'the test:'
-          echo $INPUT_STORE  
+          echo $INPUT_STORING  
       - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
       - run: echo "🖥️ The workflow is now ready to test your code on the runner."
       #- name: List files in the repository
