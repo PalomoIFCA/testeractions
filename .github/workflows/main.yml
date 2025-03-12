@@ -34,7 +34,7 @@ jobs:
       #    ls ${{ github.workspace }}
       #- run: python helloworld.py
       - run: |
-             export $INPUT_STORE=$(python .github/workflows/request.py --repo ${{ github.repository }})
+             export INPUT_STORE=$(python .github/workflows/request.py --repo ${{ github.repository }})
              echo Iit works
              echo INPUT_STORE
       - run: echo "🍏 This job's status is ${{ job.status }}."

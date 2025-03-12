@@ -84,5 +84,5 @@ for i in range(100):
     if status.json()['build_status']=='SUCCESS':
         output=requests.get('https://api-staging.sqaaas.eosc-synergy.eu/v1/pipeline/'+ide+'/output')
         break
-#print(status.json()['build_status'])
-print('sanity check')
+print(status.json()['build_status'])
+
