@@ -1,13 +1,13 @@
 #comunication with sqaas.py
 
-print('preimports')
+#print('preimports')
 import requests
 import json
-print('1st')
+#print('1st')
 import sys
 import time
 import argparse
-print('all')
+#print('all')
 
 def get_input_args():
     parser = argparse.ArgumentParser(description=("Find Ophidia workflows"))
