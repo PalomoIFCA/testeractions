@@ -20,18 +20,40 @@ outputs:
     outputSource: End_iteration_on_scenarios/experiment
 
 steps:
+  Init_frequency:
+    run: tasks/set.cwl
+    in:
+      experiment: inputexperiment
+      name:
+        default: "Init frequency"
+      key:
+        default: "frequency"
+      value:
+        default: "day"
+    out: [experiment]
+  Init_measure:
+    run: tasks/set.cwl
+    in:
+      experiment: Init_frequency/experiment
+      name:
+        default: "Init measure"
+      key:
+        default: "measure"
+      value:
+        default: "pr"
+    out: [experiment]
   Create_a_work_container:
     run: tasks/createcontainer.cwl
     in:
-      experiment: inputexperiment
+      experiment: Init_measure/experiment
       name:
         default: "Create a work container"
       container:
         default: "fires"
       dim:
-        default: "time|lat|lon"
+        default: "time|plev|lat|lon"
       hierarchy:
-        default: "oph_time|oph_base|oph_base"
+        default: "oph_time|oph_base|oph_base|oph_base"
       on_error:
         default: "skip"
     out: [experiment]
@@ -74,10 +96,21 @@ steps:
       values:
         default: "pr"
     out: [experiment]
+  Check_for_reduction_operation:
+    run: tasks/if.cwl
+    in:
+      experiment: Iterate_on_variables/experiment
+      name:
+        default: "Check for reduction operation"
+      condition:
+        default: "&{variable}"
+      forward:
+        default: "yes"
+    out: [experiment]
   Import_variable:
     run: tasks/importncs.cwl
     in:
-      experiment: Iterate_on_variables/experiment
+      experiment: Check_for_reduction_operation/experiment
       name:
         default: "Import variable"
       imp_dim:
@@ -85,7 +118,7 @@ steps:
       measure:
         default: "@variable"
       src_path:
-        default: "/data/fires/@{model}/@{scenario}/@{variable}/@{variable}_day_@{model}_@{scenario}_r1i1p1f1_gn_*.nc"
+        default: "/data/fires/@{model}/@{scenario}/@{frequency_&{variable}}/@{variable}/@{variable}_@{frequency_&{variable}}_@{model}_@{scenario}_r1i1p1f1_gn*.nc"
       container:
         default: "fires"
       subset_dims:
@@ -108,14 +141,54 @@ steps:
       concept_level:
         default: "o"
     out: [experiment]
+  Else:
+    run: tasks/else.cwl
+    in:
+      experiment: Check_for_reduction_operation/experiment
+      name:
+        default: "Else"
+    out: [experiment]
+  Import_sftlf:
+    run: tasks/importnc2.cwl
+    in:
+      experiment: Else/experiment
+      name:
+        default: "Import sftlf"
+      imp_dim:
+        default: "time"
+      measure:
+        default: "@variable"
+      src_path:
+        default: "/data/fires/@{model}/@{scenario}/@{frequency_&{variable}}/@{variable}/@{variable}_@{frequency_&{variable}}_@{model}_@{scenario}_r1i1p1f1_gn.nc"
+      container:
+        default: "fires"
+      nfrag:
+        default: 1
+    out: [experiment]
+  End_check:
+    run: tasks/endif.cwl
+    in:
+      experiment: [Reduction_on_octets/experiment, Import_sftlf/experiment]
+      name:
+        default: "End check"
+    out: [experiment]
+  Rename_measure:
+    run: tasks/apply.cwl
+    in:
+      experiment: End_check/experiment
+      name:
+        default: "Rename measure"
+      measure:
+        default: "@{measure_&{variable}}"
+    out: [experiment]
   Export_variable:
     run: tasks/exportnc2.cwl
     in:
-      experiment: Reduction_on_octets/experiment
+      experiment: Rename_measure/experiment
       name:
         default: "Export variable"
       output:
-        default: "/data/fires/output/@{variable}_day_@{model}_@{scenario}_r1i1p1f1_gn_2090-01-01_2090-01-15.nc"
+        default: "/data/fires/output/@{variable}_@{frequency_&{variable}}_@{model}_@{scenario}_r1i1p1f1_gn_2090-01-01_2090-01-15.nc"
     out: [experiment]
   Regrid_variable:
     run: tasks/script.cwl
@@ -126,7 +199,7 @@ steps:
       script:
         default: "/path/to/regrid.sh"
       args:
-        default: "/data/fires/output/@{variable}_day_@{model}_@{scenario}_r1i1p1f1_gn_2090-01-01_2090-01-15.nc -90:90 0:360 r360x180"
+        default: "/data/fires/output/@{variable}_@{frequency_&{variable}}_@{model}_@{scenario}_r1i1p1f1_gn_2090-01-01_2090-01-15.nc -90:90 0:360 r360x180"
     out: [experiment]
   End_iteration_on_variables:
     run: tasks/endfor.cwl
