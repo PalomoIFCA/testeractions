@@ -9,7 +9,7 @@ jobs:
     name: Job that triggers SQAaaS platform branchs
     steps:
       - name: SQAaaS action step
-       uses: eosc-synergy/sqaaas-assessment-action
+        uses: eosc-synergy/sqaaas-assessment-action
        # uses: eosc-synergy/sqaaas-assessment-action@feature/only_criteria_workflow_raw
        # with: 
        #    criteria_workflow_only: 'True'
